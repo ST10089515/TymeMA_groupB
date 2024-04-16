@@ -22,19 +22,7 @@
         tools:layout_editor_absoluteY="16dp"
             android:contentDescription="@string/todo" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/general_back_icon"
-                android:layout_centerVertical="true"
-                android:padding="15dp"
-                android:contentDescription="@string/todo5" />
-
-        </RelativeLayout>
+        
 
         <RelativeLayout
             android:layout_width="match_parent"
