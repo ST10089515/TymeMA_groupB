@@ -10,13 +10,18 @@ class Main_menu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
     }
-    fun openCreateCategoryActivity(view: View) {
+    fun openCreateCategoryActivity( view: View) {
         val intent = Intent(this, CreateCategory::class.java)
         startActivity(intent)
     }
 
     fun openCreateTimesheetEntryActivity(view: View) {
         val intent = Intent(this, Timesheet::class.java)
+        startActivity(intent)
+    }
+
+    fun openDisplayTimesheet(view: View) {
+        val intent = Intent(this, DisplayTimesheet::class.java)
         startActivity(intent)
     }
 }

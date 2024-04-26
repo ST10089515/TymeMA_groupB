@@ -1,5 +1,6 @@
 package com.example.tymema_v1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.EditText
 import android.widget.Spinner
@@ -31,10 +32,16 @@ class Timesheet : AppCompatActivity() {
             val description = editTextDescription.text.toString()
             val selectedCategory = spinnerCategory.selectedItem.toString()
 
-            // Here you can save the timesheet entry to the database or perform any other action
-            // For simplicity, we'll just print the values
-            println("Date: $date, Start Time: $startTime, End Time: $endTime, Description: $description, Category: $selectedCategory")
-            finish() // Close the activity after saving
+            // Create an Intent to pass data to another activity
+            val intent = Intent(this, DisplayTimesheet::class.java)
+            intent.putExtra("date", date)
+            intent.putExtra("startTime", startTime)
+            intent.putExtra("endTime", endTime)
+            intent.putExtra("description", description)
+            intent.putExtra("category", selectedCategory)
+
+            // Start the other activity
+            startActivity(intent)
         }
     }
 }
