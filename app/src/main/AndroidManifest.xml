@@ -12,12 +12,6 @@
         android:theme="@style/Theme.TymeMA_V1"
         >
         <activity
-            android:name=".CreateCategory"
-            android:exported="false" />
-        <activity
-            android:name=".Timesheet"
-            android:exported="false" />
-        <activity
             android:name=".Main_menu"
             android:exported="false" />
         <activity
