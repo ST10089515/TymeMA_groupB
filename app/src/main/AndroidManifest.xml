@@ -9,8 +9,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TymeMA_V1"
-        >
+        android:theme="@style/Theme.TymeMA_V1">
+        <activity
+            android:name=".CreateTimeSheetEntry"
+            android:exported="false" />
         <activity
             android:name=".Main_menu"
             android:exported="false" />
