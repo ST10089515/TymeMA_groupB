@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.view.View
 import android.os.Bundle
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class Main_menu : AppCompatActivity() {
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TimeSheetAdapter
 
@@ -33,6 +37,16 @@ class Main_menu : AppCompatActivity() {
 
         // Setup the floating action button to launch CreateTimeSheetEntry activity
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+            startActivityForResult(Intent(this, CreateTimeSheetEntry::class.java), REQUEST_CODE_CREATE_ENTRY)
+        }
+
+        // Setup subButton1 to launch CreateCategories activity
+        findViewById<ImageButton>(R.id.subButton1).setOnClickListener {
+            startActivity(Intent(this, CreateCategories::class.java))
+        }
+
+        // Setup subButton2 to launch CreateTimeSheetEntry activity
+        findViewById<ImageButton>(R.id.subButton2).setOnClickListener {
             startActivityForResult(Intent(this, CreateTimeSheetEntry::class.java), REQUEST_CODE_CREATE_ENTRY)
         }
     }

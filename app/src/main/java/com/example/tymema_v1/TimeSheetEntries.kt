@@ -9,6 +9,7 @@ class TimeSheetEntries(
 ) {
     companion object {
         val entriesList = mutableListOf<TimeSheetEntries>()
+        val categories = mutableListOf<String>()
     }
 }
 

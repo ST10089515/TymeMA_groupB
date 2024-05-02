@@ -1,6 +1,7 @@
 package com.example.tymema_v1
 
 import android.app.Activity
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -24,10 +25,11 @@ class CreateTimeSheetEntry : AppCompatActivity() {
         val closeButton = findViewById<ImageView>(R.id.closeButton)
 
         // Populate categories spinner
-        val categories = resources.getStringArray(R.array.categories)
+        val categories = TimeSheetEntries.categories
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCategory.adapter = adapter
+
         closeButton.setOnClickListener {
             // Handle close button click - navigate back to previous activity
             onBackPressedDispatcher.onBackPressed()
@@ -56,5 +58,10 @@ class CreateTimeSheetEntry : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    private fun loadCategories(): List<String> {
+        // Use the category list from TimeSheetEntries
+        return TimeSheetEntries.categories
     }
 }
