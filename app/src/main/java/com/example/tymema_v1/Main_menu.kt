@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.io.Serializable
 
-class Main_menu : AppCompatActivity() {
+class Main_menu : AppCompatActivity(), RecyclerViewListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TimeSheetAdapter
@@ -26,11 +27,11 @@ class Main_menu : AppCompatActivity() {
         // Setup RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Assuming entriesList is a companion object of TimeSheetEntries
         val entriesList = TimeSheetEntries.entriesList
 
         // Initialize adapter with the list of TimeSheetEntries
-        adapter = TimeSheetAdapter(entriesList)
+        adapter = TimeSheetAdapter(entriesList, this)
+        recyclerView.adapter
 
         // Set the adapter to the RecyclerView
         recyclerView.adapter = adapter
@@ -57,6 +58,12 @@ class Main_menu : AppCompatActivity() {
             // Refresh the activity
             adapter.notifyDataSetChanged()
         }
+    }
+
+    override fun onEntryClick(entry: TimeSheetEntries, position: Int) {
+        val intent = Intent(this, EntryDetails::class.java)
+        intent.putExtra("entry",entry as Serializable)
+        startActivity(intent)
     }
 
     companion object {

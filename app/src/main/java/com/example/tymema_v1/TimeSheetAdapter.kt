@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class TimeSheetAdapter(private val entries: List<TimeSheetEntries>) :
+class TimeSheetAdapter(private val entries: List<TimeSheetEntries>, private val listener: RecyclerViewListener) :
     RecyclerView.Adapter<TimeSheetAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -21,6 +21,10 @@ class TimeSheetAdapter(private val entries: List<TimeSheetEntries>) :
         holder.category.text = entry.category.joinToString(", ") // Displaying categories
         holder.description.text = entry.description // Displaying description
         holder.calcTime.text = tempViewHolder.calculateTime(entry.startTime, entry.endTime) // Displaying calculated time
+
+        holder.itemView.setOnClickListener{
+            listener.onEntryClick(entries[position], position)
+        }
     }
 
     override fun getItemCount(): Int {

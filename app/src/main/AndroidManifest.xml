@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TymeMA_V1">
         <activity
+            android:name=".EntryDetails"
+            android:exported="false" />
+        <activity
             android:name=".CreateCategories"
             android:exported="false" />
         <activity
