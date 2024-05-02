@@ -1,7 +1,9 @@
 package com.example.tymema_v1
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 
 class EntryDetails : AppCompatActivity() {
@@ -17,6 +19,7 @@ class EntryDetails : AppCompatActivity() {
         val descriptionTextView: TextView = findViewById(R.id.entry_description)
         val starttimeTextView: TextView = findViewById(R.id.entry_starttime)
         val endtimeTextView: TextView = findViewById(R.id.entry_endtime)
+        val entryImageView: ImageView = findViewById(R.id.entry_image)
 
         // Set the data to the TextViews
         dateTextView.text = entry.date
@@ -24,5 +27,8 @@ class EntryDetails : AppCompatActivity() {
         descriptionTextView.text = entry.description
         starttimeTextView.text = entry.startTime
         endtimeTextView.text = entry.endTime
+        entry.imagePath?.let {
+            entryImageView.setImageURI(Uri.parse(it))
+        }
     }
 }

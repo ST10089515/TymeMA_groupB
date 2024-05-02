@@ -7,7 +7,8 @@ class TimeSheetEntries(
     var startTime: String = "",
     var endTime: String = "",
     var description: String = "",
-    var category: List<String> = listOf()
+    var category: List<String> = listOf(),
+    var imagePath: String? = null
 ) : Serializable
 {
     companion object {
