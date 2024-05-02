@@ -1,14 +1,20 @@
 package com.example.tymema_v1
 
 import android.app.Activity
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
+import android.icu.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class CreateTimeSheetEntry : AppCompatActivity() {
 
@@ -35,6 +41,15 @@ class CreateTimeSheetEntry : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
+        editTextDate.setOnClickListener {
+            openDateDialog(editTextDate)
+        }
+        editTextStartTime.setOnClickListener {
+            openTimeDialog(editTextStartTime)
+        }
+        editTextEndTime.setOnClickListener {
+            openTimeDialog(editTextEndTime)
+        }
         buttonSave.setOnClickListener {
             // Get input values
             val date = editTextDate.text.toString()
@@ -59,9 +74,53 @@ class CreateTimeSheetEntry : AppCompatActivity() {
             }
         }
     }
+    fun openDateDialog(editTextDate: EditText) {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.YEAR, 2024)
+        calendar.set(Calendar.MONTH, 0) // January is 0-based
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, year, monthOfYear, dayOfMonth ->
+                // Update the editTextDate field
+                val selectedCalendar = Calendar.getInstance()
+                selectedCalendar.set(year, monthOfYear, dayOfMonth)
+
+                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) // Or your desired format
+                editTextDate.setText(dateFormat.format(selectedCalendar.time))
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        datePickerDialog.show()
+    }
+    fun openTimeDialog(editTextTime: EditText) {
+        val calendar = Calendar.getInstance()
+        val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+        val currentMinute = calendar.get(Calendar.MINUTE)
+
+        val timePickerDialog = TimePickerDialog(
+            this,
+            { _, hourOfDay, minute ->
+                val selectedCalendar = Calendar.getInstance()
+                selectedCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                selectedCalendar.set(Calendar.MINUTE, minute)
+
+                val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault()) // Or your desired format
+                editTextTime.setText(timeFormat.format(selectedCalendar.time))
+            },
+            currentHour,
+            currentMinute,
+            true // Set 24-hour format (false for AM/PM)
+        )
+        timePickerDialog.show()
+    }
 
     private fun loadCategories(): List<String> {
         // Use the category list from TimeSheetEntries
         return TimeSheetEntries.categories
     }
+
 }
