@@ -1,11 +1,16 @@
 package com.example.tymema_v1
 
+import android.app.Activity
+import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.view.View
 import android.os.Bundle
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
 import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.ImageButton
@@ -33,24 +38,34 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
     private lateinit var navigationView: NavigationView
     private lateinit var datePicker: TextView
     private lateinit var textReset: TextView
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+    private lateinit var spinnerHours: Spinner
+    private var filteredList: MutableList<TimeSheetEntries> = mutableListOf()
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
 
-class Main_menu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
 
         recyclerView = findViewById(R.id.recyclerView)
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
         datePicker = findViewById(R.id.textFilterByDate)
         textReset = findViewById(R.id.textReset)
+<<<<<<< HEAD
         val subButton1 = findViewById<ImageButton>(R.id.subButton1)
         val subButton2 = findViewById<ImageButton>(R.id.subButton2)
         val textSubButton1 = findViewById<TextView>(R.id.textSubButton1)
         val textSubButton2 = findViewById<TextView>(R.id.textSubButton2)
+=======
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
 
         // Setup RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -69,6 +84,7 @@ class Main_menu : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+<<<<<<< HEAD
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             // Toggle visibility of subButton1 and subButton2
@@ -86,6 +102,13 @@ class Main_menu : AppCompatActivity() {
         }
 
 
+=======
+        // Setup the floating action button to launch CreateTimeSheetEntry activity
+        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+            startActivityForResult(Intent(this, CreateTimeSheetEntry::class.java), REQUEST_CODE_CREATE_ENTRY)
+        }
+
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
         // Setup subButton1 to launch CreateCategories activity
         findViewById<ImageButton>(R.id.subButton1).setOnClickListener {
             startActivity(Intent(this, CreateCategories::class.java))
@@ -112,20 +135,85 @@ class Main_menu : AppCompatActivity() {
             resetActivity()
         }
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
     }
-    fun openCreateCategoryActivity( view: View) {
-        val intent = Intent(this, CreateCategory::class.java)
+
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { _, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int ->
+                val selectedDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(
+                    GregorianCalendar(selectedYear, selectedMonth, selectedDayOfMonth).time
+                )
+                datePicker.text = selectedDate
+                filterEntriesByDate(selectedDate)
+            },
+            year,
+            month,
+            dayOfMonth
+        )
+        datePickerDialog.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_CREATE_ENTRY && resultCode == Activity.RESULT_OK) {
+            // Refresh the activity
+            adapter.notifyDataSetChanged()
+        }
+    }
+
+    override fun onEntryClick(entry: TimeSheetEntries, position: Int) {
+        val intent = Intent(this, EntryDetails::class.java)
+        intent.putExtra("entry",entry as Serializable)
         startActivity(intent)
     }
 
-    fun openCreateTimesheetEntryActivity(view: View) {
-        val intent = Intent(this, Timesheet::class.java)
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle navigation view item clicks here.
+        when (item.itemId) {
+            R.id.nav_main_menu -> {
+                // Handle Main Menu action
+                // No action needed as you are already in Main Menu
+            }
+            R.id.nav_categories -> {
+                // Handle Categories action
+                startActivity(Intent(this, Categories::class.java))
+            }
+            R.id.nav_goals ->{
+                startActivity(Intent(this, Goals::class.java))
+            }
+
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+    private fun resetActivity() {
+        // Refresh the activity to its default state
+        val intent = intent
+        finish()
         startActivity(intent)
     }
+    private fun filterEntriesByDate(selectedDate: String) {
+        val filteredEntries = TimeSheetEntries.filterEntriesByDate(selectedDate)
 
-    fun openDisplayTimesheet(view: View) {
-        val intent = Intent(this, DisplayTimesheet::class.java)
-        startActivity(intent)
+        adapter = TimeSheetAdapter(filteredEntries.toMutableList(), this)
+        recyclerView.adapter = adapter
+        adapter.notifyDataSetChanged()
+    }
+
+
+
+    companion object {
+        private const val REQUEST_CODE_CREATE_ENTRY = 1001
     }
 }
