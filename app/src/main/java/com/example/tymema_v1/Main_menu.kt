@@ -93,6 +93,7 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
         textReset.setOnClickListener {
             resetActivity()
         }
+        //test
 
     }
 
