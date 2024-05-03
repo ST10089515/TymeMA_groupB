@@ -1,0 +1,118 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="32dp"
+    android:background="@android:color/white"
+    android:elevation="8dp"
+    android:padding="16dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
+    tools:context=".EntryDetails">
+
+    <TextView
+        android:id="@+id/entry_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date: "
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/entry_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01/01/2024"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/entry_date_label"
+        app:layout_constraintTop_toTopOf="@id/entry_date_label" />
+
+    <TextView
+        android:id="@+id/entry_category_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Category: "
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/entry_date_label" />
+
+    <TextView
+        android:id="@+id/entry_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/entry_category_label"
+        app:layout_constraintTop_toTopOf="@id/entry_category_label" />
+
+    <TextView
+        android:id="@+id/entry_description_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Description: "
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/entry_category" />
+
+    <TextView
+        android:id="@+id/entry_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/entry_description_label"
+        app:layout_constraintTop_toTopOf="@id/entry_description_label" />
+
+    <TextView
+        android:id="@+id/entry_starttime_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Start Time: "
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/entry_description" />
+
+    <TextView
+        android:id="@+id/entry_starttime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="09:00 AM"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/entry_starttime_label"
+        app:layout_constraintTop_toTopOf="@id/entry_starttime_label" />
+
+    <TextView
+        android:id="@+id/entry_endtime_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="End Time: "
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/entry_starttime" />
+
+    <TextView
+        android:id="@+id/entry_endtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="05:00 PM"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@id/entry_endtime_label"
+        app:layout_constraintTop_toTopOf="@id/entry_endtime_label" />
+
+    <ImageView
+        android:id="@+id/entry_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="212dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
