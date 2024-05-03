@@ -76,7 +76,7 @@ class Categories : AppCompatActivity(), RecyclerViewListener, NavigationView.OnN
 
 
     override fun onEntryClick(entry: TimeSheetEntries, position: Int) {
-        val intent = Intent(this, EntryDetails::class.java)
+        val intent = Intent(this, Main_menu::class.java)
         intent.putExtra("entry",entry as Serializable)
         startActivity(intent)
     }

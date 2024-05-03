@@ -52,6 +52,27 @@
                 app:layout_constraintStart_toStartOf="@+id/numberOfEntriesLabel"
                 app:layout_constraintTop_toTopOf="@+id/numberOfEntriesLabel" />
 
+            <!-- Add TextView for displaying total hours -->
+            <TextView
+                android:id="@+id/totalHoursLabel"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Hours: "
+                app:layout_constraintStart_toStartOf="@+id/numberOfEntriesLabel"
+                app:layout_constraintTop_toBottomOf="@+id/numberOfEntriesLabel"
+                android:layout_marginTop="4dp"/>
+
+            <TextView
+                android:id="@+id/totalHours"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="144dp"
+                android:text="0"
+                app:layout_constraintStart_toStartOf="@+id/totalHoursLabel"
+                app:layout_constraintTop_toTopOf="@+id/totalHoursLabel" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
