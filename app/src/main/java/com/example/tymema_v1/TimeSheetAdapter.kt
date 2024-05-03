@@ -38,8 +38,8 @@ class TimeSheetAdapter(private val entries: List<TimeSheetEntries>, private val 
 
         // Function to calculate time duration
         public fun calculateTime(startTime: String, endTime: String): String {
-            // Implement your logic to calculate time duration (endTime - startTime)
-            // For simplicity, assuming startTime and endTime are in HH:mm format
+            // logic to calculate time duration (endTime - startTime)
+            // startTime and endTime are in HH:mm format
             val startHour = startTime.split(":")[0].toInt()
             val startMinute = startTime.split(":")[1].toInt()
             val endHour = endTime.split(":")[0].toInt()
