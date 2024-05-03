@@ -1,12 +1,15 @@
 package com.example.tymema_v1
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.view.View
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.AdapterView
 import android.widget.ImageButton
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -17,6 +20,10 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.GregorianCalendar
+import java.util.Locale
 
 class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -24,6 +31,10 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
     private lateinit var adapter: TimeSheetAdapter
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
+    private lateinit var datePicker: TextView
+    private lateinit var textReset: TextView
+    private lateinit var spinnerHours: Spinner
+    private var filteredList: MutableList<TimeSheetEntries> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +43,8 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
         recyclerView = findViewById(R.id.recyclerView)
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
+        datePicker = findViewById(R.id.textFilterByDate)
+        textReset = findViewById(R.id.textReset)
 
         // Setup RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -72,6 +85,37 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
         findViewById<ImageButton>(R.id.btnOpenDrawer).setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
+
+        datePicker.setOnClickListener {
+            showDatePicker()
+        }
+
+        textReset.setOnClickListener {
+            resetActivity()
+        }
+
+    }
+
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { _, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int ->
+                val selectedDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(
+                    GregorianCalendar(selectedYear, selectedMonth, selectedDayOfMonth).time
+                )
+                datePicker.text = selectedDate
+                filterEntriesByDate(selectedDate)
+            },
+            year,
+            month,
+            dayOfMonth
+        )
+        datePickerDialog.show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -102,11 +146,27 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
             R.id.nav_goals ->{
                 startActivity(Intent(this, Goals::class.java))
             }
+
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+    private fun resetActivity() {
+        // Refresh the activity to its default state
+        val intent = intent
+        finish()
+        startActivity(intent)
+    }
+    private fun filterEntriesByDate(selectedDate: String) {
+        val filteredEntries = TimeSheetEntries.filterEntriesByDate(selectedDate)
+
+        adapter = TimeSheetAdapter(filteredEntries.toMutableList(), this)
+        recyclerView.adapter = adapter
+        adapter.notifyDataSetChanged()
+    }
+
+
 
     companion object {
         private const val REQUEST_CODE_CREATE_ENTRY = 1001

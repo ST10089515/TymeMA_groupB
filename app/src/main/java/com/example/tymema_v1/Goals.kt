@@ -5,20 +5,25 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.SystemClock
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Goals : AppCompatActivity() {
+class Goals : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var sharedPreferences: SharedPreferences
-
     private lateinit var btnSave: Button
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navigationView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,5 +77,24 @@ class Goals : AppCompatActivity() {
 
         edtMinGoal.setText(minGoal.toString())
         edtMaxGoal.setText(maxGoal.toString())
+    }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle navigation view item clicks here.
+        when (item.itemId) {
+            R.id.nav_main_menu -> {
+                // Handle Main Menu action
+                startActivity(Intent(this,Main_menu::class.java))
+            }
+            R.id.nav_categories -> {
+                // Handle Categories action
+                startActivity(Intent(this, Categories::class.java))
+            }
+            R.id.nav_goals ->{
+                // No action needed as you are already in Goals
+            }
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
     }
 }

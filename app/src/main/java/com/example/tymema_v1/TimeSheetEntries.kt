@@ -14,6 +14,13 @@ class TimeSheetEntries(
     companion object {
         val entriesList = mutableListOf<TimeSheetEntries>()
         val categories = mutableListOf<String>()
+
+        // Function to filter entries by date
+        fun filterEntriesByDate(selectedDate: String): List<TimeSheetEntries> {
+            return entriesList.filter { entry ->
+                entry.date == selectedDate
+            }
+        }
     }
 }
 

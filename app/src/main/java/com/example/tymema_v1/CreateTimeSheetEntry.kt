@@ -141,19 +141,6 @@ class CreateTimeSheetEntry : AppCompatActivity() {
             }
         }
     }
-    fun getRealPathFromURI(contentUri: Uri): String? {
-        var result: String? = null
-        val projection = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = contentResolver.query(contentUri, projection, null, null, null)
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-                result = cursor.getString(columnIndex)
-            }
-            cursor.close()
-        }
-        return result
-    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
