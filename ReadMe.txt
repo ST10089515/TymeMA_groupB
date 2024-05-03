@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 
+=======
+Certainly! Here's a draft for your README file:
+
+---
+>>>>>>> 5ac84d5b2a31ed7474168913e8e8f4b0717a5a5c
 
 # Tymema_v1 Project
 
@@ -61,3 +67,13 @@ To run the Tymema_v1 project:
 
 Contributions to the Tymema_v1 project are welcome! If you'd like to contribute, please fork the repository, make your changes, and submit a pull request. For major changes, please open an issue first to discuss the proposed changes.
 
+<<<<<<< HEAD
+=======
+## License
+
+The Tymema_v1 project is licensed under the [MIT License](LICENSE).
+
+---
+
+Feel free to modify and expand upon this README to include any additional information or instructions specific to your project. If you have any questions or need further assistance, don't hesitate to ask!
+>>>>>>> 5ac84d5b2a31ed7474168913e8e8f4b0717a5a5c

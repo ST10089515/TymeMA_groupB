@@ -34,4 +34,8 @@ class PastGoalRecords : AppCompatActivity() {
         }
         return records
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
 }

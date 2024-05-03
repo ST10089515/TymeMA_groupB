@@ -6,6 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.view.View
 import android.os.Bundle
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
 import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.ImageButton
@@ -33,18 +38,34 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
     private lateinit var navigationView: NavigationView
     private lateinit var datePicker: TextView
     private lateinit var textReset: TextView
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
     private lateinit var spinnerHours: Spinner
     private var filteredList: MutableList<TimeSheetEntries> = mutableListOf()
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
 
         recyclerView = findViewById(R.id.recyclerView)
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
         datePicker = findViewById(R.id.textFilterByDate)
         textReset = findViewById(R.id.textReset)
+<<<<<<< HEAD
+        val subButton1 = findViewById<ImageButton>(R.id.subButton1)
+        val subButton2 = findViewById<ImageButton>(R.id.subButton2)
+        val textSubButton1 = findViewById<TextView>(R.id.textSubButton1)
+        val textSubButton2 = findViewById<TextView>(R.id.textSubButton2)
+=======
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
 
         // Setup RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -63,11 +84,31 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+<<<<<<< HEAD
+
+        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+            // Toggle visibility of subButton1 and subButton2
+            if (subButton1.visibility == View.VISIBLE) {
+                subButton1.visibility = View.INVISIBLE
+                textSubButton1.visibility = View.INVISIBLE
+                subButton2.visibility = View.INVISIBLE
+                textSubButton2.visibility = View.INVISIBLE
+            } else {
+                subButton1.visibility = View.VISIBLE
+                textSubButton1.visibility = View.VISIBLE
+                subButton2.visibility = View.VISIBLE
+                textSubButton2.visibility = View.VISIBLE
+            }
+        }
+
+
+=======
         // Setup the floating action button to launch CreateTimeSheetEntry activity
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             startActivityForResult(Intent(this, CreateTimeSheetEntry::class.java), REQUEST_CODE_CREATE_ENTRY)
         }
 
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
         // Setup subButton1 to launch CreateCategories activity
         findViewById<ImageButton>(R.id.subButton1).setOnClickListener {
             startActivity(Intent(this, CreateCategories::class.java))
@@ -94,6 +135,10 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
             resetActivity()
         }
 
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
     }
 
     private fun showDatePicker() {

@@ -10,12 +10,28 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+                  <value value="C:\Users\siban\.android\avd\PIXI_7.avd" />
+=======
+                  <value value="C:\Users\tmole\.android\avd\Pixel_7_API_34.avd" />
+>>>>>>> Stashed changes
+=======
                   <value value="C:\Users\tmole\.android\avd\Pixel_7_Pro_API_34.avd" />
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+          <timeTargetWasSelectedWithDropDown value="2024-04-24T08:06:53.874297700Z" />
+=======
+          <timeTargetWasSelectedWithDropDown value="2024-05-03T18:07:12.107874100Z" />
+>>>>>>> Stashed changes
+=======
           <timeTargetWasSelectedWithDropDown value="2024-05-03T14:09:41.579146300Z" />
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
         </State>
       </entry>
     </value>

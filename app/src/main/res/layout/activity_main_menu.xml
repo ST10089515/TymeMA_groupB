@@ -54,6 +54,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    </LinearLayout>
+</ScrollView>
+=======
+=======
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
         <!-- RecyclerView -->
 
 
@@ -82,6 +89,18 @@
             app:layout_constraintTop_toBottomOf="@+id/textTitle"
             app:layout_constraintVertical_bias="0.0" />
 
+<<<<<<< HEAD
+        <TextView
+            android:id="@+id/textSubButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="102dp"
+            android:text="Create Categories"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/subButton1" />
+=======
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
@@ -90,6 +109,7 @@
             android:src="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
 
         <ImageButton
             android:id="@+id/subButton1"
@@ -98,9 +118,27 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="88dp"
             android:src="@drawable/ic_category"
+<<<<<<< HEAD
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <TextView
+            android:id="@+id/textSubButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="155dp"
+            android:text="Create Time Sheet"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/subButton2" />
+
+=======
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
         <ImageButton
             android:id="@+id/subButton2"
             android:layout_width="wrap_content"
@@ -108,6 +146,19 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="147dp"
             android:src="@drawable/ic_time"
+<<<<<<< HEAD
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_add"
+=======
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -121,4 +172,9 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu" />
 
+<<<<<<< HEAD
 </androidx.drawerlayout.widget.DrawerLayout>
+>>>>>>> Stashed changes
+=======
+</androidx.drawerlayout.widget.DrawerLayout>
+>>>>>>> 1104e5e99b754339296b469282ac3a667bcc1a6a
