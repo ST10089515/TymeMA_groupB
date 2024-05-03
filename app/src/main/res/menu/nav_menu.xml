@@ -10,8 +10,5 @@
         <item
             android:id="@+id/nav_goals"
             android:title="Goals"/>
-        <item
-            android:id="@+id/nav_filter"
-            android:title="Filter Entries" />
     </group>
 </menu>
