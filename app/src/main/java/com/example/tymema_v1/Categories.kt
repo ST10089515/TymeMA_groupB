@@ -65,6 +65,9 @@ class Categories : AppCompatActivity(), RecyclerViewListener, NavigationView.OnN
                 // Handle Categories action
                 // Not needed as I'm already in the Categories
             }
+            R.id.nav_goals ->{
+                startActivity(Intent(this, Goals::class.java))
+            }
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)

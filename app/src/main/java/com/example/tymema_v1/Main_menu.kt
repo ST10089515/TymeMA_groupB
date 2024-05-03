@@ -99,6 +99,9 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
                 // Handle Categories action
                 startActivity(Intent(this, Categories::class.java))
             }
+            R.id.nav_goals ->{
+                startActivity(Intent(this, Goals::class.java))
+            }
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)
