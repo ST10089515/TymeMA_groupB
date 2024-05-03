@@ -63,9 +63,26 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        // Setup the floating action button to launch CreateTimeSheetEntry activity
+        // Reference to subButton1 and subButton2
+        val subButton1 = findViewById<ImageButton>(R.id.subButton1)
+        val subButton2 = findViewById<ImageButton>(R.id.subButton2)
+        val textSubButton1 = findViewById<TextView>(R.id.textSubButton1)
+        val textSubButton2 = findViewById<TextView>(R.id.textSubButton2)
+
+        // Set click listener to FloatingActionButton (fab)
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
-            startActivityForResult(Intent(this, CreateTimeSheetEntry::class.java), REQUEST_CODE_CREATE_ENTRY)
+            // Toggle visibility of subButton1 and subButton2
+            if (subButton1.visibility == View.VISIBLE) {
+                subButton1.visibility = View.INVISIBLE
+                textSubButton1.visibility = View.INVISIBLE
+                subButton2.visibility = View.INVISIBLE
+                textSubButton2.visibility = View.INVISIBLE
+            } else {
+                subButton1.visibility = View.VISIBLE
+                textSubButton1.visibility = View.VISIBLE
+                subButton2.visibility = View.VISIBLE
+                textSubButton2.visibility = View.VISIBLE
+            }
         }
 
         // Setup subButton1 to launch CreateCategories activity
