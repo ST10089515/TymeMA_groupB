@@ -20,7 +20,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.github.drjacky.imagepicker.ImagePicker
+
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -164,8 +164,18 @@ class CreateTimeSheetEntry : AppCompatActivity() {
         val chooserIntent = Intent.createChooser(galleryIntent, "Select Image")
         chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(cameraIntent))
 
-        startActivityForResult(chooserIntent, if (hasGalleryPermission()) GALLERY_REQUEST else CAMERA_REQUEST)
+        if (hasCameraPermission() && hasGalleryPermission()) {
+            startActivityForResult(chooserIntent, GALLERY_REQUEST)
+        } else {
+            if (!hasCameraPermission()) {
+                requestCameraPermission()
+            }
+            if (!hasGalleryPermission()) {
+                requestGalleryPermission()
+            }
+        }
     }
+
 
     private fun openDateDialog(editTextDate: EditText) {
         val calendar = Calendar.getInstance()
