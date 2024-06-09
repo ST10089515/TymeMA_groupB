@@ -4,22 +4,36 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 class Registration : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_registration)
     }
 
-    fun saveCredentials(context: Context, username: String, password: String) {
-        val sharedPreferences: SharedPreferences = context.getSharedPreferences("credentials", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("username", username)
-        editor.putString("password", password)
-        editor.apply()
+    //Use Firebase DB instead of sharepreferences
+    fun saveCredentials(username: String, password: String) {
+        val database = Firebase.database
+        val usersRef = database.getReference("users")
+        val userId = usersRef.push().key
+        if (userId != null) {
+            val user = User(username, password)
+            usersRef.child(userId).setValue(user).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "User registered successfully", Toast.LENGTH_SHORT).show()
+                    Log.d("Registration", "User registered successfully")
+                } else {
+                    Toast.makeText(this, "Failed to register user", Toast.LENGTH_SHORT).show()
+                    Log.e("Registration", "Failed to register user: ${task.exception?.message}")
+                }
+            }
+        }
     }
 
     fun onRegisterButtonClick(view: View) {
@@ -33,10 +47,8 @@ class Registration : AppCompatActivity() {
         val username = usernameInput.text.toString()
         val password = passwordInput.text.toString()
 
-        saveCredentials(this, username, password)
+        saveCredentials(username, password)
 
-        // Now you can use name, surname, username, and password variables to perform further actions
-        // such as saving the information or validating credentials
         val intent = Intent(this, Login::class.java)
         startActivity(intent)
     }
