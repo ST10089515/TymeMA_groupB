@@ -42,7 +42,7 @@ Tymema_v1 is an Android application developed using Kotlin programming language 
 - **Password Reset:** Forgot password functionality for user convenience.
 
 ### New Features
-- **Calendar Integration"** Users can now add Entries to the timesheet directly from the calendar
+- **Calendar Integration** Users can now add Entries to the timesheet directly from the calendar
 
 ## Project Structure
 
