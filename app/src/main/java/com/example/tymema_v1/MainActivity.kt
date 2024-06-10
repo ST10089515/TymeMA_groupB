@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Firebase.database.setPersistenceEnabled(true)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_main)
 
         move = findViewById(R.id.login_btn)
         move.setOnClickListener {

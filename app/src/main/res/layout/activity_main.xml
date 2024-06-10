@@ -3,16 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/light_background_color"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:src="@mipmap/ic_banner_foreground" />
+
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/logo"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
+        android:layout_below="@id/welcome_text"
         android:layout_marginTop="32dp"
         android:textSize="20sp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/register_login_btn"
@@ -22,6 +47,8 @@
         android:layout_below="@id/login_btn"
         android:layout_marginTop="16dp"
         android:textSize="20sp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_background"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>
