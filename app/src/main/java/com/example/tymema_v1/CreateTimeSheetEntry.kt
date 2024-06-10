@@ -99,6 +99,11 @@ class CreateTimeSheetEntry : AppCompatActivity() {
         if (!prefilledDate.isNullOrEmpty()) {
             editTextDate.setText(prefilledDate)
         }
+        else{
+            editTextDate.setOnClickListener {
+                openDateDialog(editTextDate)
+            }
+        }
         editTextStartTime.setOnClickListener {
             openTimeDialog(editTextStartTime)
         }
