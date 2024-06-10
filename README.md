@@ -23,7 +23,7 @@ Tymema_v1 is an Android application developed using Kotlin programming language 
 
 ## Improvements
 
-- TymeMa now uses a Firebase database for sure Login/Registration authentication as well as storing and retrieving Entries and Goals.
+- TymeMa now uses a Firebase database for secure Login/Registration authentication as well as storing and retrieving Entries and Goals.
 - Multiple UI and Navigation fixes to provide a more seamless experience
 
 ## Features
