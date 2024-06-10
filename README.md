@@ -75,6 +75,7 @@ Contributions to the Tymema_v1 project are welcome! If you'd like to contribute,
 **email:** example@example.com\
 **password:** example
 
+### NB: Public read and write access to the firebase database is granted until July 9, 2024. After July 9, 2024, access will likely be restricted.
 
 
 ---
