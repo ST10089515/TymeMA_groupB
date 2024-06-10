@@ -131,8 +131,18 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
         reference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val newEntries = snapshot.children.mapNotNull { it.getValue(TimeSheetEntries::class.java) }
-                adapter.updateData(newEntries)  // Update TimeSheetAdapter data
-                categoryAdapter.updateData(newEntries) // Update CategoryAdapter data
+
+                if (newEntries.isEmpty()) {
+                    // If no entries found, show the TextView
+                    findViewById<TextView>(R.id.textNoEntries).visibility = View.VISIBLE
+                    recyclerView.visibility = View.GONE // Hide RecyclerView
+                } else {
+                    // If entries found, hide the TextView and show the RecyclerView
+                    findViewById<TextView>(R.id.textNoEntries).visibility = View.GONE
+                    recyclerView.visibility = View.VISIBLE
+                    adapter.updateData(newEntries)  // Update TimeSheetAdapter data
+                    categoryAdapter.updateData(newEntries) // Update CategoryAdapter data
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -190,6 +200,9 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
             }
             R.id.nav_goals ->{
                 startActivity(Intent(this, Goals::class.java))
+            }
+            R.id.nav_calendar ->{
+                startActivity(Intent(this, CalendarActivity::class.java))
             }
 
         }

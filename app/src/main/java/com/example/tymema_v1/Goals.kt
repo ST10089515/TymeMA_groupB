@@ -26,7 +26,7 @@ import java.util.*
 
 class Goals : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var sharedPreferences: SharedPreferences
+    //private lateinit var sharedPreferences: SharedPreferences
     private lateinit var btnSave: Button
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
@@ -35,7 +35,7 @@ class Goals : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_goal_tracker)
 
-        sharedPreferences = getSharedPreferences("SessionPrefs", Context.MODE_PRIVATE)
+        //sharedPreferences = getSharedPreferences("SessionPrefs", Context.MODE_PRIVATE)
 
         btnSave = findViewById(R.id.btnSave)
         val btnViewRecords = findViewById<Button>(R.id.btnViewRecords)

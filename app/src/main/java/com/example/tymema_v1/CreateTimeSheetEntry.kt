@@ -94,8 +94,10 @@ class CreateTimeSheetEntry : AppCompatActivity() {
         }
 
         // Set click listeners for date and time editTexts
-        editTextDate.setOnClickListener {
-            openDateDialog(editTextDate)
+        // If prefilledDate is passed from CalendarActivity, set it in editTextDate
+        val prefilledDate = intent.getStringExtra("prefilledDate")
+        if (!prefilledDate.isNullOrEmpty()) {
+            editTextDate.setText(prefilledDate)
         }
         editTextStartTime.setOnClickListener {
             openTimeDialog(editTextStartTime)

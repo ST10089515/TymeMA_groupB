@@ -21,6 +21,11 @@ The Tymema_v1 project is a time management application designed to help users tr
 
 Tymema_v1 is an Android application developed using Kotlin programming language and Android SDK. It offers features such as creating time sheet entries, setting goals, managing categories, user authentication, and more. The project utilizes various Android components like Activities, Fragments, RecyclerView, SharedPreferences, and Intents.
 
+## Improvements
+
+- TymeMa now uses a Firebase database for secure Login/Registration authentication as well as storing and retrieving Entries and Goals.
+- Multiple UI and Navigation fixes to provide a more seamless experience
+
 ## Features
 
 ### Main Features
@@ -36,6 +41,9 @@ Tymema_v1 is an Android application developed using Kotlin programming language 
 - **Image Attachment:** Users can attach images to their time sheet entries.
 - **Password Reset:** Forgot password functionality for user convenience.
 
+### New Features
+- **Calendar Integration** Users can now add Entries to the timesheet directly from the calendar
+
 ## Project Structure
 
 The project follows the MVC (Model-View-Controller) architecture pattern with some modifications to suit Android development:
@@ -50,7 +58,7 @@ To run the Tymema_v1 project:
 
 1. **Clone the Repository:** Clone this repository to your local machine using Git.
    ```bash
-   git clone https://github.com/ST10089515/TymeMA_groupB.git
+   git clone https://github.com/TymeMAORG/TymeMA_groupB
    ```
 
 2. **Open in Android Studio:** Open the project in Android Studio.
