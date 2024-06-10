@@ -3,6 +3,8 @@ package com.example.tymema_v1
 import java.io.Serializable
 
 class TimeSheetEntries(
+    var id: String = "",
+    var userId: String = "",
     var date: String = "",
     var startTime: String = "",
     var endTime: String = "",

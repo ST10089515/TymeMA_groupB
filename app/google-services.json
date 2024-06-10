@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1009968820631",
+    "project_id": "tymema-5fee5",
+    "storage_bucket": "tymema-5fee5.appspot.com",
+    "firebase_url": "https://tymema-5fee5-default-rtdb.europe-west1.firebasedatabase.app/"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1009968820631:android:79660a53b1e4e5d33d14d2",
+        "android_client_info": {
+          "package_name": "com.example.tymema_v1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr1P_bwxX6FKx3abTV37fYUVaANizHLbs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

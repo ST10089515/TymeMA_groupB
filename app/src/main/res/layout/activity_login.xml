@@ -27,7 +27,7 @@
             android:layout_marginTop="32dp"
             android:background="@drawable/rounded_corner"
             android:backgroundTint="@color/black"
-            android:hint="Username"
+            android:hint="Email"
             android:inputType="text"
             android:padding="18dp"
             android:textColor="@color/white"

@@ -11,6 +11,7 @@ import android.icu.util.Calendar
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -23,6 +24,11 @@ import androidx.core.content.ContextCompat
 
 import java.text.SimpleDateFormat
 import java.util.Locale
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class CreateTimeSheetEntry : AppCompatActivity() {
 
@@ -50,10 +56,34 @@ class CreateTimeSheetEntry : AppCompatActivity() {
         imageButton = findViewById<ImageView>(R.id.imageButton)
 
         // Populate categories spinner
-        val categories = TimeSheetEntries.categories
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerCategory.adapter = adapter
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            val database = FirebaseDatabase.getInstance()
+            val reference = database.getReference("categories").child(userId)
+            reference.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val categoriesList = mutableListOf<String>()
+                    for (categorySnapshot in dataSnapshot.children) {
+                        val categoryName = categorySnapshot.getValue(String::class.java)
+                        if (categoryName != null) {
+                            categoriesList.add(categoryName)
+                        }
+                    }
+                    val adapter = ArrayAdapter(
+                        this@CreateTimeSheetEntry,
+                        android.R.layout.simple_spinner_item,
+                        categoriesList
+                    )
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    spinnerCategory.adapter = adapter
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.e("Firebase", "Failed to retrieve categories: ${databaseError.message}")
+                    // Handle the error here
+                }
+            })
+        }
 
         closeButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
@@ -89,10 +119,32 @@ class CreateTimeSheetEntry : AppCompatActivity() {
             val selectedCategory = spinnerCategory.selectedItem.toString()
 
             if (date.isNotEmpty() && startTime.isNotEmpty() && endTime.isNotEmpty() && description.isNotEmpty()) {
-                val entry = TimeSheetEntries(date, startTime, endTime, description, listOf(selectedCategory), imagePath)
-                TimeSheetEntries.entriesList.add(entry)
-                setResult(Activity.RESULT_OK)
-                finish()
+                val userId = FirebaseAuth.getInstance().currentUser?.uid
+                Log.d("Firebase","userid: $userId") //just a log to see if it's retrieving the userid, if it's null then firebase auth wasn't properly setup
+                if (userId != null) {
+                    val database = FirebaseDatabase.getInstance()
+                    val reference = database.getReference("timeSheetEntries").child(userId)
+                    val entryId = reference.push().key
+                    Log.d("Firebase","entryid: $entryId")
+                    if (entryId != null) {
+                        val entry = TimeSheetEntries(entryId, userId, date, startTime, endTime, description, listOf(selectedCategory), imagePath)
+                        reference.child(entryId).setValue(entry).addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(this, "Entry saved successfully", Toast.LENGTH_SHORT).show()
+                                Log.d("Firebase", "Entry saved: $entry")
+                                setResult(Activity.RESULT_OK)
+                                finish()
+                            } else {
+                                Toast.makeText(this, "Failed to save entry", Toast.LENGTH_SHORT).show()
+                                Log.e("Firebase", "Failed to save entry", task.exception)
+                            }
+                        }
+                    } else {
+                        Log.e("Firebase", "Failed to generate entry ID")
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }
         }
 
