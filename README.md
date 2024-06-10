@@ -71,6 +71,10 @@ To run the Tymema_v1 project:
 
 Contributions to the Tymema_v1 project are welcome! If you'd like to contribute, please fork the repository, make your changes, and submit a pull request. For major changes, please open an issue first to discuss the proposed changes.
 
+## Test credentials with populated entries and goals
+email: example@example.com
+password: example
+
 
 
 ---
