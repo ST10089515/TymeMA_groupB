@@ -79,6 +79,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    implementation("com.applandeo:material-calendar-view:1.9.0-rc03")
 
     implementation ("com.github.Drjacky:ImagePicker:2.3.22")
     testImplementation("junit:junit:4.13.2")

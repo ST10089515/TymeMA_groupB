@@ -191,6 +191,9 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
             R.id.nav_goals ->{
                 startActivity(Intent(this, Goals::class.java))
             }
+            R.id.nav_calendar ->{
+                startActivity(Intent(this, CalendarActivity::class.java))
+            }
 
         }
 
