@@ -6,11 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.view.View
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.AdapterView
 import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,6 +21,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -35,6 +42,8 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
     private lateinit var textReset: TextView
     private lateinit var spinnerHours: Spinner
     private var filteredList: MutableList<TimeSheetEntries> = mutableListOf()
+    private lateinit var categoryAdapter: CategoryAdapter
+    private val userId = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +61,10 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
         val entriesList = TimeSheetEntries.entriesList
 
         // Initialize adapter with the list of TimeSheetEntries
-        adapter = TimeSheetAdapter(entriesList, this)
+        adapter = TimeSheetAdapter(this)
         recyclerView.adapter
+
+        categoryAdapter = CategoryAdapter(this)
 
         // Set the adapter to the RecyclerView
         recyclerView.adapter = adapter
@@ -110,7 +121,24 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
         textReset.setOnClickListener {
             resetActivity()
         }
+        fetchTimeSheetEntries()
 
+    }
+    private fun fetchTimeSheetEntries() {
+        val database = FirebaseDatabase.getInstance()
+        val reference = database.getReference("timeSheetEntries").child(userId.toString()) // Use userId
+
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val newEntries = snapshot.children.mapNotNull { it.getValue(TimeSheetEntries::class.java) }
+                adapter.updateData(newEntries)  // Update TimeSheetAdapter data
+                categoryAdapter.updateData(newEntries) // Update CategoryAdapter data
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@Main_menu, "Failed to load entries", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun showDatePicker() {
@@ -178,7 +206,7 @@ class Main_menu : AppCompatActivity(), RecyclerViewListener, NavigationView.OnNa
     private fun filterEntriesByDate(selectedDate: String) {
         val filteredEntries = TimeSheetEntries.filterEntriesByDate(selectedDate)
 
-        adapter = TimeSheetAdapter(filteredEntries.toMutableList(), this)
+        adapter = TimeSheetAdapter(this)
         recyclerView.adapter = adapter
         adapter.notifyDataSetChanged()
     }

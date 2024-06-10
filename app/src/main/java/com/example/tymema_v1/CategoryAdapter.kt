@@ -11,9 +11,15 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
-class CategoryAdapter(private val entries: List<TimeSheetEntries>, private val listener: RecyclerViewListener) :
+class CategoryAdapter(private val listener: RecyclerViewListener) :
     RecyclerView.Adapter<CategoryAdapter.MyViewHolder>() {
 
+    private var entries: List<TimeSheetEntries> = emptyList()
+
+    fun updateData(newEntries: List<TimeSheetEntries>) {
+        entries = newEntries
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.recycler_view_row_categories, parent, false)

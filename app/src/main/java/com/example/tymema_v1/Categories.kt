@@ -32,7 +32,7 @@ class Categories : AppCompatActivity(), RecyclerViewListener, NavigationView.OnN
 
         val entriesList = TimeSheetEntries.entriesList
 
-        adapter = CategoryAdapter(entriesList, this)
+        adapter = CategoryAdapter(this)
         recyclerView.adapter
 
         // Set the adapter to the RecyclerView
@@ -76,9 +76,10 @@ class Categories : AppCompatActivity(), RecyclerViewListener, NavigationView.OnN
 
 
     override fun onEntryClick(entry: TimeSheetEntries, position: Int) {
-        val intent = Intent(this, Main_menu::class.java)
-        intent.putExtra("entry",entry as Serializable)
+        val intent = Intent(this, EntryDetails::class.java)
+        intent.putExtra("entryId", entry.id)
         startActivity(intent)
     }
+
 
 }

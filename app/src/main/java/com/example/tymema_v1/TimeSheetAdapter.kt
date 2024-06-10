@@ -6,8 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class TimeSheetAdapter(private val entries: List<TimeSheetEntries>, private val listener: RecyclerViewListener) :
+class TimeSheetAdapter(private val listener: RecyclerViewListener) :
     RecyclerView.Adapter<TimeSheetAdapter.MyViewHolder>() {
+
+    private var entries: List<TimeSheetEntries> = emptyList()
+
+    fun updateData(newEntries: List<TimeSheetEntries>) {
+        entries = newEntries
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
